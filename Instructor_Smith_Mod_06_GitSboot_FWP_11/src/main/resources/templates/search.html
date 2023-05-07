@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- This is for using Thymeleaf -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Search-PMS</title>
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body style="max-width: 960px; margin: 16px auto; padding: 16px">
+
+    <nav th:replace ="header :: header"></nav>
+    
+	<h3>Search for Person</h3>
+	<!-- The th:action="@{/savSePerson}" expression directs the form to POST to the /savePerson endpoint.
+		 The th:object="${person}" expression declares the model object to use for collecting the form data.
+		 The three form fields, expressed with th:field, correspond to the fields in the Person object. --> 
+	<form th:action="@{/search}" method="post">
+		<div class="row">
+			 
+			<div class="input-field col s6"><label >Enter ID</label> 
+				<input id="id" type="text"  th:value="*{lastID}" name="id" /> 
+				
+			</div>
+			 
+		</div> 
+		<button type="submit" class="waves-effect waves-light btn">Find</button>
+	</form>
+	<br>
+	<!-- The link which sends GET request to "/"  -->
+	<a th:href="@{/}"
+		class="blue-text">Back</a>
+</body>
+</html>

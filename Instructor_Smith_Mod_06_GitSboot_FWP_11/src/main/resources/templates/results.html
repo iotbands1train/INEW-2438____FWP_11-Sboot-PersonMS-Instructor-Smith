@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- This is for using Thymeleaf -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Person Management System</title>
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+<!-- Compiled and minified JavaScript -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body style="max-width: 960px; margin: 16px auto; padding: 16px">
+
+    <nav th:replace ="header :: header"></nav>
+    
+	<br>
+
+	<h3 style="margin-left: 10px; align-content: center;">Person Found   <a th:text="${size}">...</a></h3> 
+	<!-- The link which sends GET request to "/showNewPersonForm"  -->
+	<a th:href="@{/create}" class="waves-effect waves-light btn">Add new person</a>
+		 <a style="float: right;" th:href="@{/}" class="waves-effect waves-light btn">Back</a>
+	<div align="center" style="margin-top: 20px">
+		<table class="responsive-table striped highlight centered">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Street</th>
+					<th>City</th> 
+					<th>State</th>
+					<th>Zip</th> 
+					<th>Phone</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+
+			<tbody>
+			<!-- You can access model attributes which are added in a Controller(PersonController.java) with ${attributeName}.
+				 In this case, it is "${listPersons}".
+			     To show all persons data in this table, you need to use "th:each" in the thymeleaf template and iterate the person of listPersons -->
+				<tr th:each="person: ${person}">
+					<td th:text="${person.id}"></td>
+					<td th:text="${person.fname}"></td>
+					<td th:text="${person.lname}"></td>
+					<td th:text="${person.street}"></td>
+					<td th:text="${person.city}"></td>
+					<td th:text="${person.state}"></td>
+					<td th:text="${person.zip}"></td>
+					<td th:text="${person.phone}"></td> 
+					<td>
+						<!-- The link which sends GET request to "/showFormForUpdate/{id}" (id is person.id) -->
+						<a th:href="@{/edit/{id}(id=${person.id})}"
+							class="waves-effect waves-light btn">Update</a>
+					</td>
+					<td>
+						<!-- The link which sends GET request to "/delete/{id}" (id is person.id)  -->
+						<a th:href="@{/delete/{id}(id=${person.id})}"
+							class="waves-effect waves-light btn red litghten-2">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

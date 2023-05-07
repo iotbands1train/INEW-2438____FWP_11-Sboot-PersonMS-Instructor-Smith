@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!-- This is for using Thymeleaf -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Person Management System</title>
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
+</script>
+</head>
+<body style="max-width: 960px; margin: 16px auto; padding: 16px">
+	<nav th:replace="header :: header"></nav>
+	<br>
+	<h2>About US</h2>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- This is for using Thymeleaf -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Edit-PMS</title>
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body style="max-width: 960px; margin: 16px auto; padding: 16px">
+
+    <nav th:replace ="header :: header"></nav>
+    
+	<h3>Update Person</h3>
+	<!-- The th:action="@{/savePerson}" expression directs the form to POST to the /savePerson endpoint.
+		 The th:object="${person}" expression declares the model object to use for collecting the form data.
+		 The three form fields, expressed with th:field, correspond to the fields in the Person object. -->
+	<form th:action="@{/save}" th:object="${person}" method="post">
+		<div class="row">
+			<div class="input-field col s6">
+				<input id="first_name" type="text" class="validate"
+					th:field="*{id}" hidden="true"> <label for="id">ID</label>
+			</div>
+			<div class="input-field col s6">
+				<input id="first_name" type="text" class="validate"
+					th:field="*{fname}"> <label for="fname">FirstName</label>
+			</div>
+			<div class="input-field col s6">
+				<input id="last_name" type="text" class="validate"
+					th:field="*{lname}"> <label for="lname">LastName</label>
+			</div>
+			<div class="input-field col s6">
+				<input id="last_name" type="text" class="validate"
+					th:field="*{street}"> <label for="street">Street</label>
+			</div>
+			<div class="input-field col s6">
+				<input id="last_name" type="text" class="validate"
+					th:field="*{city}"> <label for="city">City</label>
+			</div>
+			<div class="input-field col s6">
+				<input id="last_name" type="text" class="validate"
+					th:field="*{state}"> <label for="state">State</label>
+			</div>
+			<div class="input-field col s6">
+				<input id="last_name" type="text" class="validate"
+					th:field="*{zip}"> <label for="zip">Zip</label>
+			</div>
+			<div class="input-field col s6">
+				<input id="last_name" type="text" class="validate"
+					th:field="*{phone}"> <label for="phone">Phone</label>
+			</div>
+		</div> 
+		<button type="submit" class="waves-effect waves-light btn">Update
+			Person</button>
+	</form>
+	<br>
+	<!-- The link which sends GET request to "/"  -->
+	<a th:href="@{/}"
+		class="blue-text">Back</a>
+</body>
+</html>
