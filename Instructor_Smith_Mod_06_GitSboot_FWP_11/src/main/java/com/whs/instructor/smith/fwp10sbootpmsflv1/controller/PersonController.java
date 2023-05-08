@@ -1,4 +1,4 @@
-package com.whs.instructor.smith.fwp10sbootpmsflv1.controller ;
+package com.whs.instructor.smith.fwp10sbootpmsflv1.controller;
 
 import java.util.List;
 
@@ -185,17 +185,38 @@ public class PersonController {
 
 		Page<Person> page = pS.listAll(pageNum, 20, sortField, sortDir);
 		List<Person> listPersons = page.getContent();
-		List<Person> db =pS.getAllPersons();
-		model.addAttribute( "currentPage", pageNum == 0 ? 1 : pageNum );
-		model.addAttribute( "totalPages", page.getTotalPages() );
-		model.addAttribute( "totalItems", page.getTotalElements() );
-		model.addAttribute( "sortField", sortField );
-		model.addAttribute( "sortDir", sortDir );
-		model.addAttribute( "db", db );
-		model.addAttribute( "reverseSortDir" , sortDir.equals("asc") ? "desc" : "asc" );
-		model.addAttribute( "size", page.getTotalElements() );
-		model.addAttribute( "listPersons", listPersons );
-		model.addAttribute( "time", (System.currentTimeMillis() - start) * 0.001 );
+		List<Person> db = pS.getAllPersons();
+		model.addAttribute("currentPage", pageNum == 0 ? 1 : pageNum);
+		model.addAttribute("totalPages", page.getTotalPages());
+		model.addAttribute("totalItems", page.getTotalElements());
+		model.addAttribute("sortField", sortField);
+		model.addAttribute("sortDir", sortDir);
+		model.addAttribute("db", db);
+		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+		model.addAttribute("size", page.getTotalElements());
+		model.addAttribute("listPersons", listPersons);
+		model.addAttribute("time", (System.currentTimeMillis() - start) * 0.001);
+		return "view";
+	}
+	@RequestMapping("/page/{pageNum}/{numberOfPeoplePage}")
+	public String viewPage(Model model, @PathVariable(name = "pageNum") int pageNum,
+			@Param("sortField") String sortField, @Param("sortDir") String sortDir,
+			@Param("numOfpage") int numberOfPeoplePage) {
+		start = (System.currentTimeMillis());
+
+		Page<Person> page = pS.listAll(pageNum, numberOfPeoplePage, sortField, sortDir);
+		List<Person> listPersons = page.getContent();
+		List<Person> db = pS.getAllPersons();
+		model.addAttribute("currentPage", pageNum == 0 ? 1 : pageNum);
+		model.addAttribute("totalPages", page.getTotalPages());
+		model.addAttribute("totalItems", page.getTotalElements());
+		model.addAttribute("sortField", sortField);
+		model.addAttribute("sortDir", sortDir);
+		model.addAttribute("db", db);
+		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+		model.addAttribute("size", page.getTotalElements());
+		model.addAttribute("listPersons", listPersons);
+		model.addAttribute("time", (System.currentTimeMillis() - start) * 0.001);
 		return "view";
 	}
 }
