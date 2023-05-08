@@ -1,5 +1,6 @@
 package com.whs.instructor.smith.fwp10sbootpmsflv1.service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.whs.instructor.smith.fwp10sbootpmsflv1.model.Person;
 import com.whs.instructor.smith.fwp10sbootpmsflv1.model.RandomPerson;
 import com.whs.instructor.smith.fwp10sbootpmsflv1.repository.PersonRepository;
+ 
 
 @Service // This means that this class is a service
 public class PersonServiceImpl implements PersonService {
@@ -78,5 +80,15 @@ public class PersonServiceImpl implements PersonService {
 
 		return this.personRepository.findAll(pageable);
 	}
+
+	public List<Person> searchByLname(List<Person> list, String byLastName) {
+		List<Person> results = new LinkedList();
+		for (Person user : list) {
+			if (user.getLname().equalsIgnoreCase(byLastName)) {
+				results.add(user);
+			}
+		}
+		return results;
+	} 
 
 }

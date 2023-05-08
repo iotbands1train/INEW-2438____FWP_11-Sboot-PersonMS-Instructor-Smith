@@ -219,4 +219,24 @@ public class PersonController {
 		model.addAttribute("time", (System.currentTimeMillis() - start) * 0.001);
 		return "view";
 	}
+	
+
+	// show update form
+	@GetMapping("/searchBy")
+	public String searchByForm(Model model) {
+		List<Person> list = pS.getAllPersons();
+		Person lastPerson = list.get(list.size() - 1);
+		String byLastName = lastPerson.getLname();
+		model.addAttribute("byLastName", byLastName);
+		return "searchBy";
+	}
+
+	// show update form
+	@PostMapping("/searchBy")
+	public String searchByForm(@RequestParam String byLastName, Model model) {
+		List<Person> list = pS.getAllPersons();
+		List<Person> r = pS.searchByLname(list,byLastName);
+		model.addAttribute("person", r);
+		return "results";
+	}
 }

@@ -12,5 +12,5 @@ public interface PersonService {
 	void savePerson(Person employee);
 	Person getPersonById(Long id);
 	void deletePersonById(Long id);
-	Page<Person> listAll(int pageNo, int pageSize, String sortField, String sortDirection); 
+	Page<Person> listAll(int pageNo, int pageSize, String sortField, String sortDirection);  
 }
